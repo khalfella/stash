@@ -1,0 +1,1594 @@
+CPU     ID                    FUNCTION:NAME
+  0  45764             tcp_tpi_close:return conn_t * 0xffffff0b39689340
+conn_t {
+    kmutex_t conn_lock = {
+        void *[1] _opaque = [ 0 ]
+    }
+    uint32_t conn_ref = 0x3
+    uint32_t conn_flags = 0x40000001
+    union conn_proto_priv = {
+        tcp_t *cp_tcp = 0xffffff0b39689b40
+        struct udp_s *cp_udp = 0xffffff0b39689b40
+        struct icmp_s *cp_icmp = 0xffffff0b39689b40
+        struct rts_s *cp_rts = 0xffffff0b39689b40
+        struct iptun_s *cp_iptun = 0xffffff0b39689b40
+        struct sctp_s *cp_sctp = 0xffffff0b39689b40
+        void *cp_priv = 0xffffff0b39689b40
+    }
+    kcondvar_t conn_cv = {
+        ushort_t _opaque = 0
+    }
+    uint8_t conn_proto = 0x6
+    edesc_rpf conn_recv = ip`tcp_input_data
+    edesc_rpf conn_recvicmp = ip`tcp_icmp_input
+    edesc_vpf conn_verifyicmp = ip`tcp_verifyicmp
+    ip_xmit_attr_t *conn_ixa = 0xffffff077fc7a200
+    crb_t conn_recv_ancillary = {
+        union crbu = {
+            uint32_t crbu_all = 0
+            struct crbb = {
+                unsigned int crbb_recvdstaddr = 0
+                unsigned int crbb_recvopts :32 = 0
+                unsigned int crbb_recvif :32 = 0
+                unsigned int crbb_recvslla :32 = 0
+                unsigned int crbb_recvttl :32 = 0
+                unsigned int crbb_ip_recvpktinfo :32 = 0
+                unsigned int crbb_ipv6_recvhoplimit :32 = 0
+                unsigned int crbb_ipv6_recvhopopts :32 = 0
+                unsigned int crbb_ipv6_recvdstopts = 0
+                unsigned int crbb_ipv6_recvrthdr :32 = 0
+                unsigned int crbb_old_ipv6_recvdstopts :32 = 0
+                unsigned int crbb_ipv6_recvrthdrdstopts :32 = 0
+                unsigned int crbb_ipv6_recvtclass :32 = 0
+                unsigned int crbb_recvucred :32 = 0
+                unsigned int crbb_timestamp :32 = 0
+            }
+        }
+    }
+    squeue_t *conn_sqp = 0xffffff0737c15f00
+    uint_t conn_state_flags = 0x1
+    int conn_lingertime = 0
+    unsigned int conn_on_sqp = 0x100
+    unsigned int conn_linger :32 = 0x100
+    unsigned int conn_useloopback :32 = 0x100
+    unsigned int conn_broadcast :32 = 0x100
+    unsigned int conn_reuseaddr :32 = 0x100
+    unsigned int conn_keepalive :32 = 0x100
+    unsigned int conn_multi_router :32 = 0x100
+    unsigned int conn_unspec_src :32 = 0x100
+    unsigned int conn_policy_cached = 0x1
+    unsigned int conn_in_enforce_policy :32 = 0x1
+    unsigned int conn_out_enforce_policy :32 = 0x1
+    unsigned int conn_debug :32 = 0x1
+    unsigned int conn_ipv6_v6only :32 = 0x1
+    unsigned int conn_oobinline :32 = 0x1
+    unsigned int conn_dgram_errind :32 = 0x1
+    unsigned int conn_exclbind :32 = 0x1
+    unsigned int conn_mdt_ok = 0
+    unsigned int conn_allzones :32 = 0
+    unsigned int conn_ipv6_recvpathmtu :32 = 0
+    unsigned int conn_mcbc_bind :32 = 0
+    unsigned int conn_pad_to_bit_31 :32 = 0
+    boolean_t conn_blocked = B_FALSE
+    squeue_t *conn_initial_sqp = 0xffffff0737c15f00
+    squeue_t *conn_final_sqp = 0
+    ill_t *conn_dhcpinit_ill = 0
+    ipsec_latch_t *conn_latch = 0
+    struct ipsec_policy_s *conn_latch_in_policy = 0
+    struct ipsec_action_s *conn_latch_in_action = 0
+    uint_t conn_bound_if = 0
+    queue_t *conn_rq = 0
+    queue_t *conn_wq = 0
+    dev_t conn_dev = 0x4003e
+    vmem_t *conn_minor_arena = 0xffffff0737c1c708
+    ip_helper_stream_info_t *conn_helper_info = 0
+    cred_t *conn_cred = 0xffffff074a6dc358
+    pid_t conn_cpid = 0xffffffff
+    uint64_t conn_open_time = 0x1f68b0
+    connf_t *conn_g_fanout = 0xffffff073938a680
+    struct conn_s *conn_g_next = 0
+    struct conn_s *conn_g_prev = 0
+    struct ipsec_policy_head_s *conn_policy = 0
+    in6_addr_t conn_bound_addr_v6 = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    connf_t *conn_fanout = 0xffffff073930ffb0
+    struct conn_s *conn_next = 0
+    struct conn_s *conn_prev = 0
+    struct connua_v6addr = {
+        in6_addr_t connua_laddr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x5aea8c0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x5 ]
+                uint32_t __S6_align = 0
+            }
+        }
+        in6_addr_t connua_faddr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x1aea8c0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x1 ]
+                uint32_t __S6_align = 0
+            }
+        }
+    }
+    in6_addr_t conn_saddr_v6 = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x5aea8c0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x5 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    union u_port = {
+        uint32_t connu_ports2 = 0x50e11600
+        struct connu_ports = {
+            in_port_t connu_fport = 0x1600
+            in_port_t connu_lport = 0x50e1
+        }
+    }
+    uint_t conn_incoming_ifindex = 0
+    ill_t *conn_oper_pending_ill = 0
+    krwlock_t conn_ilg_lock = {
+        void *[1] _opaque = [ 0 ]
+    }
+    ilg_t *conn_ilg = 0
+    kcondvar_t conn_refcv = {
+        ushort_t _opaque = 0
+    }
+    struct conn_s *conn_drain_next = 0
+    struct conn_s *conn_drain_prev = 0
+    idl_t *conn_idl = 0
+    mblk_t *conn_ipsec_opt_mp = 0
+    zoneid_t conn_zoneid = 0
+    int conn_rtaware = 0
+    kcondvar_t conn_sq_cv = {
+        ushort_t _opaque = 0
+    }
+    sock_upcalls_t *conn_upcalls = 0xfffffffffc063180
+    sock_upper_handle_t conn_upper_handle = 0xffffff0ad65e8ed8
+    unsigned int conn_mlp_type = 0x80
+    unsigned int conn_anon_mlp :32 = 0x80
+    unsigned int conn_anon_port :32 = 0x80
+    unsigned int conn_mac_mode :32 = 0x80
+    unsigned int conn_anon_priv_bind :32 = 0x80
+    unsigned int conn_zone_is_global :32 = 0x80
+    unsigned int conn_isvrrp = 0
+    unsigned int conn_spare :32 = 0
+    boolean_t conn_flow_cntrld = B_FALSE
+    netstack_t *conn_netstack = 0xffffff0728423dc0
+    ushort_t conn_ipversion = 0x4
+    sa_family_t conn_family = 0x2
+    uint_t conn_so_type = 0x2
+    uint_t conn_sndbuf = 0xc000
+    uint_t conn_rcvbuf = 0x1f768
+    uint_t conn_wroff = 0x78
+    uint_t conn_sndlowat = 0x1333
+    uint_t conn_rcvlowat = 0
+    uint8_t conn_default_ttl = 0x40
+    uint32_t conn_flowinfo = 0
+    in6_addr_t conn_v6lastdst = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    ushort_t conn_lastipversion = 0
+    in_port_t conn_lastdstport = 0
+    uint32_t conn_lastflowinfo = 0
+    uint_t conn_lastscopeid = 0
+    uint_t conn_lastsrcid = 0
+    in6_addr_t conn_v6lastsrc = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    ip_pkt_t conn_xmit_ipp = {
+        uint_t ipp_fields = 0
+        in6_addr_t ipp_addr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+                uint32_t __S6_align = 0
+            }
+        }
+        uint_t ipp_unicast_hops = 0x40
+        uint_t ipp_hoplimit = 0
+        uint_t ipp_hopoptslen = 0
+        uint_t ipp_rthdrdstoptslen = 0
+        uint_t ipp_rthdrlen = 0
+        uint_t ipp_dstoptslen = 0
+        uint_t ipp_fraghdrlen = 0
+        ip6_hbh_t *ipp_hopopts = 0
+        ip6_dest_t *ipp_rthdrdstopts = 0
+        ip6_rthdr_t *ipp_rthdr = 0
+        ip6_dest_t *ipp_dstopts = 0
+        ip6_frag_t *ipp_fraghdr = 0
+        uint8_t ipp_tclass = 0
+        uint8_t ipp_type_of_service = 0
+        uint_t ipp_ipv4_options_len = 0
+        uint8_t *ipp_ipv4_options = 0
+        uint_t ipp_label_len_v4 = 0
+        uint8_t *ipp_label_v4 = 0
+        uint_t ipp_label_len_v6 = 0
+        uint8_t *ipp_label_v6 = 0
+    }
+    uint8_t *conn_ht_iphc = 0xffffff07ae736140
+    uint_t conn_ht_iphc_allocated = 0x50
+    uint_t conn_ht_iphc_len = 0x34
+    uint8_t *conn_ht_ulp = 0xffffff07ae736154
+    uint_t conn_ht_ulp_len = 0x20
+    uint32_t conn_sum = 0
+    uint32_t conn_ioctlref = 0
+    int conn_trace_last = 0x4
+    conn_trace_t [10] conn_trace_buf = [
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b0253a, 0xfffffffff7b0ed69, 0xfffffffff7b0f131, 0xfffffffff7b0d8be, 0xfffffffff7b0c804, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b028f7, 0xfffffffff7b0c89a, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b0253a, 0xfffffffff7b0c8e5, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xd
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b06392, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78, 0xfffffffffb9e71e6, 0xfffffffffb9e710b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7ad227f, 0xfffffffff7ad0a1e, 0xfffffffff7ad0862, 0xfffffffff7acea38, 0xfffffffff7ace075, 0xfffffffff7acdc3b, 0xfffffffffb9eeb6d, 0xfffffffffb9e8c6d, 0xfffffffffb9ea85b, 0xfffffffffb9ec1a5, 0xfffffffffb9e7460, 0xfffffffffb9e71e6, 0xfffffffffb9e710b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b09c25, 0xfffffffff7b0a9eb, 0xfffffffffb89ca0f, 0xfffffffffbe5b712, 0xfffffffffbe5649d, 0xfffffffff7bbcb75, 0xfffffffff7bbb558, 0xfffffffff7bbac00, 0xfffffffff7bc563c, 0xfffffffff7bc8ef0, 0xfffffffff7bcba37, 0xfffffffff7bc2006, 0xfffffffffbef1fd5, 0xfffffffffbd9e71b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7b09cf1, 0xfffffffff7b0a9eb, 0xfffffffffb89ca0f, 0xfffffffffbe5b712, 0xfffffffffbe5649d, 0xfffffffff7bbcb75, 0xfffffffff7bbb558, 0xfffffffff7bbac00, 0xfffffffff7bc563c, 0xfffffffff7bc8ef0, 0xfffffffff7bcba37, 0xfffffffff7bc2006, 0xfffffffffbef1fd5 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xe
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7af483b, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78, 0 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b028f7, 0xfffffffff7b0ed55, 0xfffffffff7b0f131, 0xfffffffff7b0d8be, 0xfffffffff7b0c804, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41 ]
+        }
+    ]
+}
+              genunix`qdetach+0xa8
+              genunix`strclose+0x334
+              sockfs`sotpi_close+0x147
+              sockfs`socket_close_internal+0x58
+              sockfs`socket_vop_close+0x128
+              genunix`fop_close+0x61
+              genunix`closef+0xe7
+              genunix`closeall+0x82
+              genunix`proc_exit+0x450
+              genunix`exit+0x15
+              genunix`rexit+0x18
+              unix`_sys_sysenter_post_swapgs+0x237
+
+  8  47526          ipcl_conn_destroy:entry caught it, came here to destroy it here
+pid = 0, execname = sched
+
+              ip`squeue_enter+0x9e2
+              ip`ip_fanout_v4+0xdaf
+              ip`ip_input_local_v4+0x16e
+              ip`ire_recv_local_v4+0x172
+              ip`ill_input_short_v4+0x568
+              ip`ip_input_common_v4+0x3f5
+              ip`ip_input+0x2b
+              mac`mac_rx_soft_ring_process+0x37d
+              mac`mac_rx_srs_proto_fanout+0x33d
+              mac`mac_rx_srs_drain+0x40b
+              mac`mac_rx_srs_process+0x555
+              mac`mac_rx_common+0x240
+              mac`mac_rx+0xb6
+              mac`mac_rx_ring+0x2b
+              e1000g`e1000g_intr_work+0x222
+              e1000g`e1000g_intr+0x6b
+              apix`apix_dispatch_pending_autovect+0x101
+              apix`apix_dispatch_pending_hardint+0x34
+              unix`switch_sp_and_call+0x13
+
+^C
+
+root@silver:/home/illumos# ^C
+root@silver:/home/illumos# ^C
+root@silver:/home/illumos# ^C
+root@silver:/home/illumos# ^C
+root@silver:/home/illumos# ^C
+root@silver:/home/illumos# ^C
+root@silver:/home/illumos# ^C
+root@silver:/home/illumos#
+root@silver:/home/illumos#
+root@silver:/home/illumos# vi trace_tcp_tpi_close_conn_des.d
+      1 BEGIN {
+      2     q  = (queue_t *)NULL;
+      3 }
+      4
+      5
+      6 fbt::tcp_tpi_close:entry
+      7 /execname == "test02"/
+      8 {
+      9     q = (queue_t *) arg0;
+     10     self->conn = (conn_t *) q->q_ptr;
+     11     conn = self->conn;
+     12 }
+     13
+     14 fbt::tcp_tpi_close:return
+     15 /self->conn/
+     16 {
+     17     print(self->conn);
+     18     print(*self->conn);
+     19     stack();
+     20     self->conn = 0;
+     21 }
+     22
+     23 fbt::ipcl_conn_destroy:entry
+     24 /conn == (conn_t *)arg0/
+     25 {
+     26     printf("caught it, came here to destroy it here\n");
+     27     printf("pid = %d, execname = %s\n", pid, execname);
+     28     stack();
+     29
+     30
+     31     chill(100);
+     32 }
+     33
+~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            "trace_tcp_tpi_close_conn_des.d" 33 lines, 469 characters written
+root@silver:/home/illumos#
+root@silver:/home/illumos# vi trace_tcp_tpi_close_conn_des.d
+      1 BEGIN {
+      2     q  = (queue_t *)NULL;
+      3 }
+      4
+      5
+      6 fbt::tcp_tpi_close:entry
+      7 /execname == "test02"/
+      8 {
+      9     q = (queue_t *) arg0;
+     10     self->conn = (conn_t *) q->q_ptr;
+     11     conn = self->conn;
+     12 }
+     13
+     14 fbt::tcp_tpi_close:return
+     15 /self->conn/
+     16 {
+     17     print(self->conn);
+     18     print(*self->conn);
+     19     stack();
+     20     self->conn = 0;
+     21 }
+     22
+     23 fbt::ipcl_conn_destroy:entry
+     24 /conn == (conn_t *)arg0/
+     25 {
+     26     printf("caught it, came here to destroy it here\n");
+     27     printf("pid = %d, execname = %s\n", pid, execname);
+     28     stack();
+     29
+     30     chill(500000001);
+     31     self->chill_me  = 1;
+     32
+     33 }
+     34
+     35
+     36 fbt::ipcl_conn_destroy:entry
+     37 /self->chill_me/
+     38 {
+     39     chill(500000001);
+     40 }
+     41 fbt::ipcl_conn_destroy:entry
+     42 /self->chill_me/
+     43 {
+     44     chill(500000001);
+     45 }
+     46 fbt::ipcl_conn_destroy:entry
+     47 /self->chill_me/
+     48 {
+     49     chill(500000001);
+     50 }
+     51
+     52 fbt::ipcl_conn_destroy:entry
+     53 /self->chill_me/
+     54 {
+     55     chill(500000001);
+     56 }
+     57
+~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            "trace_tcp_tpi_close_conn_des.d" 57 lines, 776 characters written
+root@silver:/home/illumos# dtrace  -s trace_tcp_tpi_close_conn_des.d
+dtrace: script 'trace_tcp_tpi_close_conn_des.d' matched 8 probes
+dtrace: could not enable tracing: Destructive actions not allowed
+root@silver:/home/illumos# dtrace  -w -s trace_tcp_tpi_close_conn_des.d
+dtrace: script 'trace_tcp_tpi_close_conn_des.d' matched 8 probes
+dtrace: allowing destructive actions
+CPU     ID                    FUNCTION:NAME
+  8  45764             tcp_tpi_close:return conn_t * 0xffffff0b451cf340
+conn_t {
+    kmutex_t conn_lock = {
+        void *[1] _opaque = [ 0 ]
+    }
+    uint32_t conn_ref = 0x3
+    uint32_t conn_flags = 0x40000001
+    union conn_proto_priv = {
+        tcp_t *cp_tcp = 0xffffff0b451cfb40
+        struct udp_s *cp_udp = 0xffffff0b451cfb40
+        struct icmp_s *cp_icmp = 0xffffff0b451cfb40
+        struct rts_s *cp_rts = 0xffffff0b451cfb40
+        struct iptun_s *cp_iptun = 0xffffff0b451cfb40
+        struct sctp_s *cp_sctp = 0xffffff0b451cfb40
+        void *cp_priv = 0xffffff0b451cfb40
+    }
+    kcondvar_t conn_cv = {
+        ushort_t _opaque = 0
+    }
+    uint8_t conn_proto = 0x6
+    edesc_rpf conn_recv = ip`tcp_input_data
+    edesc_rpf conn_recvicmp = ip`tcp_icmp_input
+    edesc_vpf conn_verifyicmp = ip`tcp_verifyicmp
+    ip_xmit_attr_t *conn_ixa = 0xffffff07642cfc00
+    crb_t conn_recv_ancillary = {
+        union crbu = {
+            uint32_t crbu_all = 0
+            struct crbb = {
+                unsigned int crbb_recvdstaddr = 0
+                unsigned int crbb_recvopts :32 = 0
+                unsigned int crbb_recvif :32 = 0
+                unsigned int crbb_recvslla :32 = 0
+                unsigned int crbb_recvttl :32 = 0
+                unsigned int crbb_ip_recvpktinfo :32 = 0
+                unsigned int crbb_ipv6_recvhoplimit :32 = 0
+                unsigned int crbb_ipv6_recvhopopts :32 = 0
+                unsigned int crbb_ipv6_recvdstopts = 0
+                unsigned int crbb_ipv6_recvrthdr :32 = 0
+                unsigned int crbb_old_ipv6_recvdstopts :32 = 0
+                unsigned int crbb_ipv6_recvrthdrdstopts :32 = 0
+                unsigned int crbb_ipv6_recvtclass :32 = 0
+                unsigned int crbb_recvucred :32 = 0
+                unsigned int crbb_timestamp :32 = 0
+            }
+        }
+    }
+    squeue_t *conn_sqp = 0xffffff0737c15700
+    uint_t conn_state_flags = 0x1
+    int conn_lingertime = 0
+    unsigned int conn_on_sqp = 0x100
+    unsigned int conn_linger :32 = 0x100
+    unsigned int conn_useloopback :32 = 0x100
+    unsigned int conn_broadcast :32 = 0x100
+    unsigned int conn_reuseaddr :32 = 0x100
+    unsigned int conn_keepalive :32 = 0x100
+    unsigned int conn_multi_router :32 = 0x100
+    unsigned int conn_unspec_src :32 = 0x100
+    unsigned int conn_policy_cached = 0x1
+    unsigned int conn_in_enforce_policy :32 = 0x1
+    unsigned int conn_out_enforce_policy :32 = 0x1
+    unsigned int conn_debug :32 = 0x1
+    unsigned int conn_ipv6_v6only :32 = 0x1
+    unsigned int conn_oobinline :32 = 0x1
+    unsigned int conn_dgram_errind :32 = 0x1
+    unsigned int conn_exclbind :32 = 0x1
+    unsigned int conn_mdt_ok = 0
+    unsigned int conn_allzones :32 = 0
+    unsigned int conn_ipv6_recvpathmtu :32 = 0
+    unsigned int conn_mcbc_bind :32 = 0
+    unsigned int conn_pad_to_bit_31 :32 = 0
+    boolean_t conn_blocked = B_FALSE
+    squeue_t *conn_initial_sqp = 0xffffff0737c15700
+    squeue_t *conn_final_sqp = 0
+    ill_t *conn_dhcpinit_ill = 0
+    ipsec_latch_t *conn_latch = 0
+    struct ipsec_policy_s *conn_latch_in_policy = 0
+    struct ipsec_action_s *conn_latch_in_action = 0
+    uint_t conn_bound_if = 0
+    queue_t *conn_rq = 0
+    queue_t *conn_wq = 0
+    dev_t conn_dev = 0x4003e
+    vmem_t *conn_minor_arena = 0xffffff0737c1c708
+    ip_helper_stream_info_t *conn_helper_info = 0
+    cred_t *conn_cred = 0xffffff074a6dc358
+    pid_t conn_cpid = 0xffffffff
+    uint64_t conn_open_time = 0x1fd3b6
+    connf_t *conn_g_fanout = 0xffffff073938a6d0
+    struct conn_s *conn_g_next = 0xffffff07557a8340
+    struct conn_s *conn_g_prev = 0
+    struct ipsec_policy_head_s *conn_policy = 0
+    in6_addr_t conn_bound_addr_v6 = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    connf_t *conn_fanout = 0xffffff07391cb160
+    struct conn_s *conn_next = 0
+    struct conn_s *conn_prev = 0
+    struct connua_v6addr = {
+        in6_addr_t connua_laddr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x5aea8c0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x5 ]
+                uint32_t __S6_align = 0
+            }
+        }
+        in6_addr_t connua_faddr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x1aea8c0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x1 ]
+                uint32_t __S6_align = 0
+            }
+        }
+    }
+    in6_addr_t conn_saddr_v6 = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x5aea8c0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x5 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    union u_port = {
+        uint32_t connu_ports2 = 0xcb8e1600
+        struct connu_ports = {
+            in_port_t connu_fport = 0x1600
+            in_port_t connu_lport = 0xcb8e
+        }
+    }
+    uint_t conn_incoming_ifindex = 0
+    ill_t *conn_oper_pending_ill = 0
+    krwlock_t conn_ilg_lock = {
+        void *[1] _opaque = [ 0 ]
+    }
+    ilg_t *conn_ilg = 0
+    kcondvar_t conn_refcv = {
+        ushort_t _opaque = 0
+    }
+    struct conn_s *conn_drain_next = 0
+    struct conn_s *conn_drain_prev = 0
+    idl_t *conn_idl = 0
+    mblk_t *conn_ipsec_opt_mp = 0
+    zoneid_t conn_zoneid = 0
+    int conn_rtaware = 0
+    kcondvar_t conn_sq_cv = {
+        ushort_t _opaque = 0
+    }
+    sock_upcalls_t *conn_upcalls = 0xfffffffffc063180
+    sock_upper_handle_t conn_upper_handle = 0xffffff0ad65ec938
+    unsigned int conn_mlp_type = 0x80
+    unsigned int conn_anon_mlp :32 = 0x80
+    unsigned int conn_anon_port :32 = 0x80
+    unsigned int conn_mac_mode :32 = 0x80
+    unsigned int conn_anon_priv_bind :32 = 0x80
+    unsigned int conn_zone_is_global :32 = 0x80
+    unsigned int conn_isvrrp = 0
+    unsigned int conn_spare :32 = 0
+    boolean_t conn_flow_cntrld = B_FALSE
+    netstack_t *conn_netstack = 0xffffff0728423dc0
+    ushort_t conn_ipversion = 0x4
+    sa_family_t conn_family = 0x2
+    uint_t conn_so_type = 0x2
+    uint_t conn_sndbuf = 0xc000
+    uint_t conn_rcvbuf = 0x1f768
+    uint_t conn_wroff = 0x78
+    uint_t conn_sndlowat = 0x1333
+    uint_t conn_rcvlowat = 0
+    uint8_t conn_default_ttl = 0x40
+    uint32_t conn_flowinfo = 0
+    in6_addr_t conn_v6lastdst = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    ushort_t conn_lastipversion = 0
+    in_port_t conn_lastdstport = 0
+    uint32_t conn_lastflowinfo = 0
+    uint_t conn_lastscopeid = 0
+    uint_t conn_lastsrcid = 0
+    in6_addr_t conn_v6lastsrc = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    ip_pkt_t conn_xmit_ipp = {
+        uint_t ipp_fields = 0
+        in6_addr_t ipp_addr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+                uint32_t __S6_align = 0
+            }
+        }
+        uint_t ipp_unicast_hops = 0x40
+        uint_t ipp_hoplimit = 0
+        uint_t ipp_hopoptslen = 0
+        uint_t ipp_rthdrdstoptslen = 0
+        uint_t ipp_rthdrlen = 0
+        uint_t ipp_dstoptslen = 0
+        uint_t ipp_fraghdrlen = 0
+        ip6_hbh_t *ipp_hopopts = 0
+        ip6_dest_t *ipp_rthdrdstopts = 0
+        ip6_rthdr_t *ipp_rthdr = 0
+        ip6_dest_t *ipp_dstopts = 0
+        ip6_frag_t *ipp_fraghdr = 0
+        uint8_t ipp_tclass = 0
+        uint8_t ipp_type_of_service = 0
+        uint_t ipp_ipv4_options_len = 0
+        uint8_t *ipp_ipv4_options = 0
+        uint_t ipp_label_len_v4 = 0
+        uint8_t *ipp_label_v4 = 0
+        uint_t ipp_label_len_v6 = 0
+        uint8_t *ipp_label_v6 = 0
+    }
+    uint8_t *conn_ht_iphc = 0xffffff087653d358
+    uint_t conn_ht_iphc_allocated = 0x50
+    uint_t conn_ht_iphc_len = 0x34
+    uint8_t *conn_ht_ulp = 0xffffff087653d36c
+    uint_t conn_ht_ulp_len = 0x20
+    uint32_t conn_sum = 0
+    uint32_t conn_ioctlref = 0
+    int conn_trace_last = 0x6
+    conn_trace_t [10] conn_trace_buf = [
+        conn_trace_t {
+            int ctb_depth = 0xe
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7af483b, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78, 0 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b028f7, 0xfffffffff7b0ed55, 0xfffffffff7b0f131, 0xfffffffff7b0d8be, 0xfffffffff7b0c804, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b0253a, 0xfffffffff7b0ed69, 0xfffffffff7b0f131, 0xfffffffff7b0d8be, 0xfffffffff7b0c804, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b028f7, 0xfffffffff7b0c89a, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b0253a, 0xfffffffff7b0c8e5, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xd
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b06392, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78, 0xfffffffffb9e71e6, 0xfffffffffb9e710b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7ad227f, 0xfffffffff7ad0a1e, 0xfffffffff7ad0862, 0xfffffffff7acea38, 0xfffffffff7ace075, 0xfffffffff7acdc3b, 0xfffffffffb9eeb6d, 0xfffffffffb9e8c6d, 0xfffffffffb9ea85b, 0xfffffffffb9ec1a5, 0xfffffffffb9e7460, 0xfffffffffb9e71e6, 0xfffffffffb9e710b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b09c25, 0xfffffffff7b0a9eb, 0xfffffffffb89ca0f, 0xfffffffffbe5b712, 0xfffffffffbe5649d, 0xfffffffff7bbcb75, 0xfffffffff7bbb558, 0xfffffffff7bbac00, 0xfffffffff7bc563c, 0xfffffffff7bc8ef0, 0xfffffffff7bcba37, 0xfffffffff7bc2006, 0xfffffffffbef1fd5, 0xfffffffffbd9e71b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7b09cf1, 0xfffffffff7b0a9eb, 0xfffffffffb89ca0f, 0xfffffffffbe5b712, 0xfffffffffbe5649d, 0xfffffffff7bbcb75, 0xfffffffff7bbb558, 0xfffffffff7bbac00, 0xfffffffff7bc563c, 0xfffffffff7bc8ef0, 0xfffffffff7bcba37, 0xfffffffff7bc2006, 0xfffffffffbef1fd5 ]
+        }
+    ]
+}
+              genunix`qdetach+0xa8
+              genunix`strclose+0x334
+              sockfs`sotpi_close+0x147
+              sockfs`socket_close_internal+0x58
+              sockfs`socket_vop_close+0x128
+              genunix`fop_close+0x61
+              genunix`closef+0xe7
+              genunix`closeall+0x82
+              genunix`proc_exit+0x450
+              genunix`exit+0x15
+              genunix`rexit+0x18
+              unix`_sys_sysenter_post_swapgs+0x237
+
+dtrace: error on enabled probe ID 4 (ID 47526: fbt:ip:ipcl_conn_destroy:entry): illegal operation in action #5
+^C
+
+root@silver:/home/illumos# vi trace_tcp_tpi_close_conn_des.d
+      1 BEGIN {
+      2     q  = (queue_t *)NULL;
+      3 }
+      4
+      5
+      6 fbt::tcp_tpi_close:entry
+      7 /execname == "test02"/
+      8 {
+      9     q = (queue_t *) arg0;
+     10     self->conn = (conn_t *) q->q_ptr;
+     11     conn = self->conn;
+     12 }
+     13
+     14 fbt::tcp_tpi_close:return
+     15 /self->conn/
+     16 {
+     17     print(self->conn);
+     18     print(*self->conn);
+     19     stack();
+     20     self->conn = 0;
+     21 }
+     22
+     23 fbt::ipcl_conn_destroy:entry
+     24 /conn == (conn_t *)arg0/
+     25 {
+     26     printf("caught it, came here to destroy it here\n");
+     27     printf("pid = %d, execname = %s\n", pid, execname);
+     28     stack();
+     29
+     30     chill(500000001);
+     31     self->chill_me  = 1;
+     32
+     33 }
+     34
+     35
+     36 fbt::ipcl_conn_destroy:entry
+     37 /self->chill_me/
+     38 {
+     39     chill(500000001);
+     40 }
+     41 fbt::ipcl_conn_destroy:entry
+     42 /self->chill_me/
+     43 {
+     44     chill(500000001);
+     45 }
+     46 fbt::ipcl_conn_destroy:entry
+     47 /self->chill_me/
+     48 {
+     49     chill(500000001);
+     50 }
+     51
+     52 fbt::ipcl_conn_destroy:entry
+     53 /self->chill_me/
+     54 {
+     55     chill(500000001);
+     56 }
+     57
+     58
+     59 fbt::ipc_conn_destroy:return
+     60 /self->chill_me/
+     61 {
+     62     self->chill_me = 0;
+     63     printf("out of destroy....\n");
+     64 }
+     65
+~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            "trace_tcp_tpi_close_conn_des.d" 65 lines, 882 characters written
+root@silver:/home/illumos# dtrace  -w -s trace_tcp_tpi_close_conn_des.d
+dtrace: failed to compile script trace_tcp_tpi_close_conn_des.d: line 59: probe description fbt::ipc_conn_destroy:return does not match any probes
+root@silver:/home/illumos# vi trace_tcp_tpi_close_conn_des.d
+      1 BEGIN {
+      2     q  = (queue_t *)NULL;
+      3 }
+      4
+      5
+      6 fbt::tcp_tpi_close:entry
+      7 /execname == "test02"/
+      8 {
+      9     q = (queue_t *) arg0;
+     10     self->conn = (conn_t *) q->q_ptr;
+     11     conn = self->conn;
+     12 }
+     13
+     14 fbt::tcp_tpi_close:return
+     15 /self->conn/
+     16 {
+     17     print(self->conn);
+     18     print(*self->conn);
+     19     stack();
+     20     self->conn = 0;
+     21 }
+     22
+     23 fbt::ipcl_conn_destroy:entry
+     24 /conn == (conn_t *)arg0/
+     25 {
+     26     printf("caught it, came here to destroy it here\n");
+     27     printf("pid = %d, execname = %s\n", pid, execname);
+     28     stack();
+     29
+     30     chill(500000001);
+     31     self->chill_me  = 1;
+     32
+     33 }
+     34
+     35
+     36 fbt::ipcl_conn_destroy:entry
+     37 /self->chill_me/
+     38 {
+     39     chill(500000001);
+     40 }
+     41 fbt::ipcl_conn_destroy:entry
+     42 /self->chill_me/
+     43 {
+     44     chill(500000001);
+     45 }
+     46 fbt::ipcl_conn_destroy:entry
+     47 /self->chill_me/
+     48 {
+     49     chill(500000001);
+     50 }
+     51
+     52 fbt::ipcl_conn_destroy:entry
+     53 /self->chill_me/
+     54 {
+     55     chill(500000001);
+     56 }
+     57
+     58
+     59 fbt::ipcl_conn_destroy:return
+     60 /self->chill_me/
+     61 {
+     62     self->chill_me = 0;
+     63     printf("out of destroy....\n");
+     64 }
+     65
+~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            "trace_tcp_tpi_close_conn_des.d" 65 lines, 883 characters written
+root@silver:/home/illumos# dtrace  -w -s trace_tcp_tpi_close_conn_des.d
+dtrace: script 'trace_tcp_tpi_close_conn_des.d' matched 9 probes
+dtrace: allowing destructive actions
+CPU     ID                    FUNCTION:NAME
+  0  45764             tcp_tpi_close:return conn_t * 0xffffff0b4f863340
+conn_t {
+    kmutex_t conn_lock = {
+        void *[1] _opaque = [ 0 ]
+    }
+    uint32_t conn_ref = 0x3
+    uint32_t conn_flags = 0x40000001
+    union conn_proto_priv = {
+        tcp_t *cp_tcp = 0xffffff0b4f863b40
+        struct udp_s *cp_udp = 0xffffff0b4f863b40
+        struct icmp_s *cp_icmp = 0xffffff0b4f863b40
+        struct rts_s *cp_rts = 0xffffff0b4f863b40
+        struct iptun_s *cp_iptun = 0xffffff0b4f863b40
+        struct sctp_s *cp_sctp = 0xffffff0b4f863b40
+        void *cp_priv = 0xffffff0b4f863b40
+    }
+    kcondvar_t conn_cv = {
+        ushort_t _opaque = 0
+    }
+    uint8_t conn_proto = 0x6
+    edesc_rpf conn_recv = ip`tcp_input_data
+    edesc_rpf conn_recvicmp = ip`tcp_icmp_input
+    edesc_vpf conn_verifyicmp = ip`tcp_verifyicmp
+    ip_xmit_attr_t *conn_ixa = 0xffffff0787e62800
+    crb_t conn_recv_ancillary = {
+        union crbu = {
+            uint32_t crbu_all = 0
+            struct crbb = {
+                unsigned int crbb_recvdstaddr = 0
+                unsigned int crbb_recvopts :32 = 0
+                unsigned int crbb_recvif :32 = 0
+                unsigned int crbb_recvslla :32 = 0
+                unsigned int crbb_recvttl :32 = 0
+                unsigned int crbb_ip_recvpktinfo :32 = 0
+                unsigned int crbb_ipv6_recvhoplimit :32 = 0
+                unsigned int crbb_ipv6_recvhopopts :32 = 0
+                unsigned int crbb_ipv6_recvdstopts = 0
+                unsigned int crbb_ipv6_recvrthdr :32 = 0
+                unsigned int crbb_old_ipv6_recvdstopts :32 = 0
+                unsigned int crbb_ipv6_recvrthdrdstopts :32 = 0
+                unsigned int crbb_ipv6_recvtclass :32 = 0
+                unsigned int crbb_recvucred :32 = 0
+                unsigned int crbb_timestamp :32 = 0
+            }
+        }
+    }
+    squeue_t *conn_sqp = 0xffffff0737c15f00
+    uint_t conn_state_flags = 0x1
+    int conn_lingertime = 0
+    unsigned int conn_on_sqp = 0x100
+    unsigned int conn_linger :32 = 0x100
+    unsigned int conn_useloopback :32 = 0x100
+    unsigned int conn_broadcast :32 = 0x100
+    unsigned int conn_reuseaddr :32 = 0x100
+    unsigned int conn_keepalive :32 = 0x100
+    unsigned int conn_multi_router :32 = 0x100
+    unsigned int conn_unspec_src :32 = 0x100
+    unsigned int conn_policy_cached = 0x1
+    unsigned int conn_in_enforce_policy :32 = 0x1
+    unsigned int conn_out_enforce_policy :32 = 0x1
+    unsigned int conn_debug :32 = 0x1
+    unsigned int conn_ipv6_v6only :32 = 0x1
+    unsigned int conn_oobinline :32 = 0x1
+    unsigned int conn_dgram_errind :32 = 0x1
+    unsigned int conn_exclbind :32 = 0x1
+    unsigned int conn_mdt_ok = 0
+    unsigned int conn_allzones :32 = 0
+    unsigned int conn_ipv6_recvpathmtu :32 = 0
+    unsigned int conn_mcbc_bind :32 = 0
+    unsigned int conn_pad_to_bit_31 :32 = 0
+    boolean_t conn_blocked = B_FALSE
+    squeue_t *conn_initial_sqp = 0xffffff0737c15f00
+    squeue_t *conn_final_sqp = 0
+    ill_t *conn_dhcpinit_ill = 0
+    ipsec_latch_t *conn_latch = 0
+    struct ipsec_policy_s *conn_latch_in_policy = 0
+    struct ipsec_action_s *conn_latch_in_action = 0
+    uint_t conn_bound_if = 0
+    queue_t *conn_rq = 0
+    queue_t *conn_wq = 0
+    dev_t conn_dev = 0x4003e
+    vmem_t *conn_minor_arena = 0xffffff0737c1c708
+    ip_helper_stream_info_t *conn_helper_info = 0
+    cred_t *conn_cred = 0xffffff074a6dc358
+    pid_t conn_cpid = 0xffffffff
+    uint64_t conn_open_time = 0x1ff842
+    connf_t *conn_g_fanout = 0xffffff073938a6e0
+    struct conn_s *conn_g_next = 0xffffff07557cd600
+    struct conn_s *conn_g_prev = 0
+    struct ipsec_policy_head_s *conn_policy = 0
+    in6_addr_t conn_bound_addr_v6 = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    connf_t *conn_fanout = 0xffffff0739306d00
+    struct conn_s *conn_next = 0
+    struct conn_s *conn_prev = 0
+    struct connua_v6addr = {
+        in6_addr_t connua_laddr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x5aea8c0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x5 ]
+                uint32_t __S6_align = 0
+            }
+        }
+        in6_addr_t connua_faddr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x1aea8c0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x1 ]
+                uint32_t __S6_align = 0
+            }
+        }
+    }
+    in6_addr_t conn_saddr_v6 = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x5aea8c0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x5 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    union u_port = {
+        uint32_t connu_ports2 = 0x32b31600
+        struct connu_ports = {
+            in_port_t connu_fport = 0x1600
+            in_port_t connu_lport = 0x32b3
+        }
+    }
+    uint_t conn_incoming_ifindex = 0
+    ill_t *conn_oper_pending_ill = 0
+    krwlock_t conn_ilg_lock = {
+        void *[1] _opaque = [ 0 ]
+    }
+    ilg_t *conn_ilg = 0
+    kcondvar_t conn_refcv = {
+        ushort_t _opaque = 0
+    }
+    struct conn_s *conn_drain_next = 0
+    struct conn_s *conn_drain_prev = 0
+    idl_t *conn_idl = 0
+    mblk_t *conn_ipsec_opt_mp = 0
+    zoneid_t conn_zoneid = 0
+    int conn_rtaware = 0
+    kcondvar_t conn_sq_cv = {
+        ushort_t _opaque = 0
+    }
+    sock_upcalls_t *conn_upcalls = 0xfffffffffc063180
+    sock_upper_handle_t conn_upper_handle = 0xffffff0ad65e8ed8
+    unsigned int conn_mlp_type = 0x80
+    unsigned int conn_anon_mlp :32 = 0x80
+    unsigned int conn_anon_port :32 = 0x80
+    unsigned int conn_mac_mode :32 = 0x80
+    unsigned int conn_anon_priv_bind :32 = 0x80
+    unsigned int conn_zone_is_global :32 = 0x80
+    unsigned int conn_isvrrp = 0
+    unsigned int conn_spare :32 = 0
+    boolean_t conn_flow_cntrld = B_FALSE
+    netstack_t *conn_netstack = 0xffffff0728423dc0
+    ushort_t conn_ipversion = 0x4
+    sa_family_t conn_family = 0x2
+    uint_t conn_so_type = 0x2
+    uint_t conn_sndbuf = 0xc000
+    uint_t conn_rcvbuf = 0x1f768
+    uint_t conn_wroff = 0x78
+    uint_t conn_sndlowat = 0x1333
+    uint_t conn_rcvlowat = 0
+    uint8_t conn_default_ttl = 0x40
+    uint32_t conn_flowinfo = 0
+    in6_addr_t conn_v6lastdst = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    ushort_t conn_lastipversion = 0
+    in_port_t conn_lastdstport = 0
+    uint32_t conn_lastflowinfo = 0
+    uint_t conn_lastscopeid = 0
+    uint_t conn_lastsrcid = 0
+    in6_addr_t conn_v6lastsrc = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    ip_pkt_t conn_xmit_ipp = {
+        uint_t ipp_fields = 0
+        in6_addr_t ipp_addr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+                uint32_t __S6_align = 0
+            }
+        }
+        uint_t ipp_unicast_hops = 0x40
+        uint_t ipp_hoplimit = 0
+        uint_t ipp_hopoptslen = 0
+        uint_t ipp_rthdrdstoptslen = 0
+        uint_t ipp_rthdrlen = 0
+        uint_t ipp_dstoptslen = 0
+        uint_t ipp_fraghdrlen = 0
+        ip6_hbh_t *ipp_hopopts = 0
+        ip6_dest_t *ipp_rthdrdstopts = 0
+        ip6_rthdr_t *ipp_rthdr = 0
+        ip6_dest_t *ipp_dstopts = 0
+        ip6_frag_t *ipp_fraghdr = 0
+        uint8_t ipp_tclass = 0
+        uint8_t ipp_type_of_service = 0
+        uint_t ipp_ipv4_options_len = 0
+        uint8_t *ipp_ipv4_options = 0
+        uint_t ipp_label_len_v4 = 0
+        uint8_t *ipp_label_v4 = 0
+        uint_t ipp_label_len_v6 = 0
+        uint8_t *ipp_label_v6 = 0
+    }
+    uint8_t *conn_ht_iphc = 0xffffff07589a9968
+    uint_t conn_ht_iphc_allocated = 0x50
+    uint_t conn_ht_iphc_len = 0x34
+    uint8_t *conn_ht_ulp = 0xffffff07589a997c
+    uint_t conn_ht_ulp_len = 0x20
+    uint32_t conn_sum = 0
+    uint32_t conn_ioctlref = 0
+    int conn_trace_last = 0x6
+    conn_trace_t [10] conn_trace_buf = [
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b0253a, 0xfffffffff7b0ed69, 0xfffffffff7b0f131, 0xfffffffff7b0d8be, 0xfffffffff7b0c804, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b028f7, 0xfffffffff7b0c89a, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b0253a, 0xfffffffff7b0c8e5, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7abaa5b, 0xfffffffff7ad1f10, 0xfffffffff7ad0a1e, 0xfffffffff7ad0862, 0xfffffffff7acea38, 0xfffffffff7ace075, 0xfffffffff7acdc3b, 0xfffffffffb9eeb6d, 0xfffffffffb9e8c6d, 0xfffffffffb9ea85b, 0xfffffffffb9ec1a5, 0xfffffffffb9e7460, 0xfffffffffb9e71e6, 0xfffffffffb9e710b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xd
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b06392, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78, 0xfffffffffb9e71e6, 0xfffffffffb9e710b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7ad227f, 0xfffffffff7ad0a1e, 0xfffffffff7ad0862, 0xfffffffff7acea38, 0xfffffffff7ace075, 0xfffffffff7acdc3b, 0xfffffffffb9eeb6d, 0xfffffffffb9e8c6d, 0xfffffffffb9ea85b, 0xfffffffffb9ec1a5, 0xfffffffffb9e7460, 0xfffffffffb9e71e6, 0xfffffffffb9e710b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7b09cf1, 0xfffffffff7b0a9eb, 0xfffffffffb89ca0f, 0xfffffffffbe5b712, 0xfffffffffbe5649d, 0xfffffffff7bbcb75, 0xfffffffff7bbb558, 0xfffffffff7bbac00, 0xfffffffff7bc563c, 0xfffffffff7bc8ef0, 0xfffffffff7bcba37, 0xfffffffff7bc2006, 0xfffffffffbef1fd5 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xe
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7af483b, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78, 0 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b028f7, 0xfffffffff7b0ed55, 0xfffffffff7b0f131, 0xfffffffff7b0d8be, 0xfffffffff7b0c804, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41 ]
+        }
+    ]
+}
+              genunix`qdetach+0xa8
+              genunix`strclose+0x334
+              sockfs`sotpi_close+0x147
+              sockfs`socket_close_internal+0x58
+              sockfs`socket_vop_close+0x128
+              genunix`fop_close+0x61
+              genunix`closef+0xe7
+              genunix`closeall+0x82
+              genunix`proc_exit+0x450
+              genunix`exit+0x15
+              genunix`rexit+0x18
+              unix`_sys_sysenter_post_swapgs+0x237
+
+dtrace: error on enabled probe ID 4 (ID 47526: fbt:ip:ipcl_conn_destroy:entry): illegal operation in action #5
+
+
+
+^C
+
+root@silver:/home/illumos# vi trace_tcp_tpi_close_conn_des.d
+      1 BEGIN {
+      2     q  = (queue_t *)NULL;
+      3 }
+      4
+      5
+      6 fbt::tcp_tpi_close:entry
+      7 /execname == "test02"/
+      8 {
+      9     q = (queue_t *) arg0;
+     10     self->conn = (conn_t *) q->q_ptr;
+     11     conn = self->conn;
+     12 }
+     13
+     14 fbt::tcp_tpi_close:return
+     15 /self->conn/
+     16 {
+     17     print(self->conn);
+     18     print(*self->conn);
+     19     stack();
+     20     self->conn = 0;
+     21 }
+     22
+     23 fbt::ipcl_conn_destroy:entry
+     24 /conn == (conn_t *)arg0/
+     25 {
+     26     printf("caught it, came here to destroy it here\n");
+     27     printf("pid = %d, execname = %s\n", pid, execname);
+     28     stack();
+     29
+     30     chill(500000000);
+     31     self->chill_me  = 1;
+     32
+     33 }
+     34
+     35
+     36 fbt::ipcl_conn_destroy:entry
+     37 /self->chill_me/
+     38 {
+     39     chill(500000000);
+     40 }
+     41 fbt::ipcl_conn_destroy:entry
+     42 /self->chill_me/
+     43 {
+     44     chill(500000000);
+     45 }
+     46 fbt::ipcl_conn_destroy:entry
+     47 /self->chill_me/
+     48 {
+     49     chill(500000000);
+     50 }
+     51
+     52 fbt::ipcl_conn_destroy:entry
+     53 /self->chill_me/
+     54 {
+     55     chill(500000000);
+     56 }
+     57
+     58
+     59 fbt::ipcl_conn_destroy:return
+     60 /self->chill_me/
+     61 {
+     62     self->chill_me = 0;
+     63     printf("out of destroy....\n");
+     64 }
+     65
+~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            "trace_tcp_tpi_close_conn_des.d" 65 lines, 883 characters written
+root@silver:/home/illumos# dtrace  -w -s trace_tcp_tpi_close_conn_des.d
+dtrace: script 'trace_tcp_tpi_close_conn_des.d' matched 9 probes
+dtrace: allowing destructive actions
+CPU     ID                    FUNCTION:NAME
+  0  45764             tcp_tpi_close:return conn_t * 0xffffff0b58995340
+conn_t {
+    kmutex_t conn_lock = {
+        void *[1] _opaque = [ 0 ]
+    }
+    uint32_t conn_ref = 0x3
+    uint32_t conn_flags = 0x40000001
+    union conn_proto_priv = {
+        tcp_t *cp_tcp = 0xffffff0b58995b40
+        struct udp_s *cp_udp = 0xffffff0b58995b40
+        struct icmp_s *cp_icmp = 0xffffff0b58995b40
+        struct rts_s *cp_rts = 0xffffff0b58995b40
+        struct iptun_s *cp_iptun = 0xffffff0b58995b40
+        struct sctp_s *cp_sctp = 0xffffff0b58995b40
+        void *cp_priv = 0xffffff0b58995b40
+    }
+    kcondvar_t conn_cv = {
+        ushort_t _opaque = 0
+    }
+    uint8_t conn_proto = 0x6
+    edesc_rpf conn_recv = ip`tcp_input_data
+    edesc_rpf conn_recvicmp = ip`tcp_icmp_input
+    edesc_vpf conn_verifyicmp = ip`tcp_verifyicmp
+    ip_xmit_attr_t *conn_ixa = 0xffffff07aebba000
+    crb_t conn_recv_ancillary = {
+        union crbu = {
+            uint32_t crbu_all = 0
+            struct crbb = {
+                unsigned int crbb_recvdstaddr = 0
+                unsigned int crbb_recvopts :32 = 0
+                unsigned int crbb_recvif :32 = 0
+                unsigned int crbb_recvslla :32 = 0
+                unsigned int crbb_recvttl :32 = 0
+                unsigned int crbb_ip_recvpktinfo :32 = 0
+                unsigned int crbb_ipv6_recvhoplimit :32 = 0
+                unsigned int crbb_ipv6_recvhopopts :32 = 0
+                unsigned int crbb_ipv6_recvdstopts = 0
+                unsigned int crbb_ipv6_recvrthdr :32 = 0
+                unsigned int crbb_old_ipv6_recvdstopts :32 = 0
+                unsigned int crbb_ipv6_recvrthdrdstopts :32 = 0
+                unsigned int crbb_ipv6_recvtclass :32 = 0
+                unsigned int crbb_recvucred :32 = 0
+                unsigned int crbb_timestamp :32 = 0
+            }
+        }
+    }
+    squeue_t *conn_sqp = 0xffffff0737c15f00
+    uint_t conn_state_flags = 0x1
+    int conn_lingertime = 0
+    unsigned int conn_on_sqp = 0x100
+    unsigned int conn_linger :32 = 0x100
+    unsigned int conn_useloopback :32 = 0x100
+    unsigned int conn_broadcast :32 = 0x100
+    unsigned int conn_reuseaddr :32 = 0x100
+    unsigned int conn_keepalive :32 = 0x100
+    unsigned int conn_multi_router :32 = 0x100
+    unsigned int conn_unspec_src :32 = 0x100
+    unsigned int conn_policy_cached = 0x1
+    unsigned int conn_in_enforce_policy :32 = 0x1
+    unsigned int conn_out_enforce_policy :32 = 0x1
+    unsigned int conn_debug :32 = 0x1
+    unsigned int conn_ipv6_v6only :32 = 0x1
+    unsigned int conn_oobinline :32 = 0x1
+    unsigned int conn_dgram_errind :32 = 0x1
+    unsigned int conn_exclbind :32 = 0x1
+    unsigned int conn_mdt_ok = 0
+    unsigned int conn_allzones :32 = 0
+    unsigned int conn_ipv6_recvpathmtu :32 = 0
+    unsigned int conn_mcbc_bind :32 = 0
+    unsigned int conn_pad_to_bit_31 :32 = 0
+    boolean_t conn_blocked = B_FALSE
+    squeue_t *conn_initial_sqp = 0xffffff0737c15f00
+    squeue_t *conn_final_sqp = 0
+    ill_t *conn_dhcpinit_ill = 0
+    ipsec_latch_t *conn_latch = 0
+    struct ipsec_policy_s *conn_latch_in_policy = 0
+    struct ipsec_action_s *conn_latch_in_action = 0
+    uint_t conn_bound_if = 0
+    queue_t *conn_rq = 0
+    queue_t *conn_wq = 0
+    dev_t conn_dev = 0x4003e
+    vmem_t *conn_minor_arena = 0xffffff0737c1c708
+    ip_helper_stream_info_t *conn_helper_info = 0
+    cred_t *conn_cred = 0xffffff074a6dc358
+    pid_t conn_cpid = 0xffffffff
+    uint64_t conn_open_time = 0x20083f
+    connf_t *conn_g_fanout = 0xffffff073938a6f0
+    struct conn_s *conn_g_next = 0
+    struct conn_s *conn_g_prev = 0
+    struct ipsec_policy_head_s *conn_policy = 0
+    in6_addr_t conn_bound_addr_v6 = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    connf_t *conn_fanout = 0xffffff073927f300
+    struct conn_s *conn_next = 0
+    struct conn_s *conn_prev = 0
+    struct connua_v6addr = {
+        in6_addr_t connua_laddr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x5aea8c0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x5 ]
+                uint32_t __S6_align = 0
+            }
+        }
+        in6_addr_t connua_faddr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x1aea8c0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x1 ]
+                uint32_t __S6_align = 0
+            }
+        }
+    }
+    in6_addr_t conn_saddr_v6 = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0xffff0000, 0x5aea8c0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xc0, 0xa8, 0xae, 0x5 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    union u_port = {
+        uint32_t connu_ports2 = 0x13b21600
+        struct connu_ports = {
+            in_port_t connu_fport = 0x1600
+            in_port_t connu_lport = 0x13b2
+        }
+    }
+    uint_t conn_incoming_ifindex = 0
+    ill_t *conn_oper_pending_ill = 0
+    krwlock_t conn_ilg_lock = {
+        void *[1] _opaque = [ 0 ]
+    }
+    ilg_t *conn_ilg = 0
+    kcondvar_t conn_refcv = {
+        ushort_t _opaque = 0
+    }
+    struct conn_s *conn_drain_next = 0
+    struct conn_s *conn_drain_prev = 0
+    idl_t *conn_idl = 0
+    mblk_t *conn_ipsec_opt_mp = 0
+    zoneid_t conn_zoneid = 0
+    int conn_rtaware = 0
+    kcondvar_t conn_sq_cv = {
+        ushort_t _opaque = 0
+    }
+    sock_upcalls_t *conn_upcalls = 0xfffffffffc063180
+    sock_upper_handle_t conn_upper_handle = 0xffffff0ad65e8ed8
+    unsigned int conn_mlp_type = 0x80
+    unsigned int conn_anon_mlp :32 = 0x80
+    unsigned int conn_anon_port :32 = 0x80
+    unsigned int conn_mac_mode :32 = 0x80
+    unsigned int conn_anon_priv_bind :32 = 0x80
+    unsigned int conn_zone_is_global :32 = 0x80
+    unsigned int conn_isvrrp = 0
+    unsigned int conn_spare :32 = 0
+    boolean_t conn_flow_cntrld = B_FALSE
+    netstack_t *conn_netstack = 0xffffff0728423dc0
+    ushort_t conn_ipversion = 0x4
+    sa_family_t conn_family = 0x2
+    uint_t conn_so_type = 0x2
+    uint_t conn_sndbuf = 0xc000
+    uint_t conn_rcvbuf = 0x1f768
+    uint_t conn_wroff = 0x78
+    uint_t conn_sndlowat = 0x1333
+    uint_t conn_rcvlowat = 0
+    uint8_t conn_default_ttl = 0x40
+    uint32_t conn_flowinfo = 0
+    in6_addr_t conn_v6lastdst = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    ushort_t conn_lastipversion = 0
+    in_port_t conn_lastdstport = 0
+    uint32_t conn_lastflowinfo = 0
+    uint_t conn_lastscopeid = 0
+    uint_t conn_lastsrcid = 0
+    in6_addr_t conn_v6lastsrc = {
+        union _S6_un = {
+            uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+            uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            uint32_t __S6_align = 0
+        }
+    }
+    ip_pkt_t conn_xmit_ipp = {
+        uint_t ipp_fields = 0
+        in6_addr_t ipp_addr = {
+            union _S6_un = {
+                uint32_t [4] _S6_u32 = [ 0, 0, 0, 0 ]
+                uint8_t [16] _S6_u8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+                uint32_t __S6_align = 0
+            }
+        }
+        uint_t ipp_unicast_hops = 0x40
+        uint_t ipp_hoplimit = 0
+        uint_t ipp_hopoptslen = 0
+        uint_t ipp_rthdrdstoptslen = 0
+        uint_t ipp_rthdrlen = 0
+        uint_t ipp_dstoptslen = 0
+        uint_t ipp_fraghdrlen = 0
+        ip6_hbh_t *ipp_hopopts = 0
+        ip6_dest_t *ipp_rthdrdstopts = 0
+        ip6_rthdr_t *ipp_rthdr = 0
+        ip6_dest_t *ipp_dstopts = 0
+        ip6_frag_t *ipp_fraghdr = 0
+        uint8_t ipp_tclass = 0
+        uint8_t ipp_type_of_service = 0
+        uint_t ipp_ipv4_options_len = 0
+        uint8_t *ipp_ipv4_options = 0
+        uint_t ipp_label_len_v4 = 0
+        uint8_t *ipp_label_v4 = 0
+        uint_t ipp_label_len_v6 = 0
+        uint8_t *ipp_label_v6 = 0
+    }
+    uint8_t *conn_ht_iphc = 0xffffff07c7043270
+    uint_t conn_ht_iphc_allocated = 0x50
+    uint_t conn_ht_iphc_len = 0x34
+    uint8_t *conn_ht_ulp = 0xffffff07c7043284
+    uint_t conn_ht_ulp_len = 0x20
+    uint32_t conn_sum = 0
+    uint32_t conn_ioctlref = 0
+    int conn_trace_last = 0x4
+    conn_trace_t [10] conn_trace_buf = [
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b0253a, 0xfffffffff7b0ed69, 0xfffffffff7b0f131, 0xfffffffff7b0d8be, 0xfffffffff7b0c804, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b028f7, 0xfffffffff7b0c89a, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b0253a, 0xfffffffff7b0c8e5, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xd
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b06392, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78, 0xfffffffffb9e71e6, 0xfffffffffb9e710b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7ad227f, 0xfffffffff7ad0a1e, 0xfffffffff7ad0862, 0xfffffffff7acea38, 0xfffffffff7ace075, 0xfffffffff7acdc3b, 0xfffffffffb9eeb6d, 0xfffffffffb9e8c6d, 0xfffffffffb9ea85b, 0xfffffffffb9ec1a5, 0xfffffffffb9e7460, 0xfffffffffb9e71e6, 0xfffffffffb9e710b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7b09c25, 0xfffffffff7b0a9eb, 0xfffffffffb89ca0f, 0xfffffffffbe5b712, 0xfffffffffbe5649d, 0xfffffffff7bbcb75, 0xfffffffff7bbb558, 0xfffffffff7bbac00, 0xfffffffff7bc563c, 0xfffffffff7bc8ef0, 0xfffffffff7bcba37, 0xfffffffff7bc2006, 0xfffffffffbef1fd5, 0xfffffffffbd9e71b ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7abffb0, 0xfffffffff7b09cf1, 0xfffffffff7b0a9eb, 0xfffffffffb89ca0f, 0xfffffffffbe5b712, 0xfffffffffbe5649d, 0xfffffffff7bbcb75, 0xfffffffff7bbb558, 0xfffffffff7bbac00, 0xfffffffff7bc563c, 0xfffffffff7bc8ef0, 0xfffffffff7bcba37, 0xfffffffff7bc2006, 0xfffffffffbef1fd5 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xe
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdb83, 0xfffffffff7af483b, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41, 0xfffffffffbd838d7, 0xfffffffffbd83762, 0xfffffffffbd75440, 0xfffffffffbd74f45, 0xfffffffffbd74b78, 0 ]
+        },
+        conn_trace_t {
+            int ctb_depth = 0xf
+            pc_t [15] ctb_stack = [ 0xfffffffff7abdc23, 0xfffffffff7b028f7, 0xfffffffff7b0ed55, 0xfffffffff7b0f131, 0xfffffffff7b0d8be, 0xfffffffff7b0c804, 0xfffffffff7abff53, 0xfffffffff7af49d1, 0xfffffffff7b06353, 0xfffffffffbe61188, 0xfffffffffbe51f54, 0xfffffffff7bba967, 0xfffffffff7bcbaf8, 0xfffffffff7bc1e38, 0xfffffffffbef1c41 ]
+        }
+    ]
+}
+              genunix`qdetach+0xa8
+              genunix`strclose+0x334
+              sockfs`sotpi_close+0x147
+              sockfs`socket_close_internal+0x58
+              sockfs`socket_vop_close+0x128
+              genunix`fop_close+0x61
+              genunix`closef+0xe7
+              genunix`closeall+0x82
+              genunix`proc_exit+0x450
+              genunix`exit+0x15
+              genunix`rexit+0x18
+              unix`_sys_sysenter_post_swapgs+0x237
+
+  8  47526          ipcl_conn_destroy:entry caught it, came here to destroy it here
+pid = 0, execname = sched
+
+              ip`squeue_enter+0x9e2
+              ip`ip_fanout_v4+0xdaf
+              ip`ip_input_local_v4+0x16e
+              ip`ire_recv_local_v4+0x172
+              ip`ill_input_short_v4+0x568
+              ip`ip_input_common_v4+0x3f5
+              ip`ip_input+0x2b
+              mac`mac_rx_soft_ring_process+0x37d
+              mac`mac_rx_srs_proto_fanout+0x33d
+              mac`mac_rx_srs_drain+0x40b
+              mac`mac_rx_srs_process+0x555
+              mac`mac_rx_common+0x240
+              mac`mac_rx+0xb6
+              mac`mac_rx_ring+0x2b
+              e1000g`e1000g_intr_work+0x222
+              e1000g`e1000g_intr+0x6b
+              apix`apix_dispatch_pending_autovect+0x101
+              apix`apix_dispatch_pending_hardint+0x34
+              unix`switch_sp_and_call+0x13
+
+dtrace: error on enabled probe ID 5 (ID 47526: fbt:ip:ipcl_conn_destroy:entry): illegal operation in action #1
+dtrace: error on enabled probe ID 6 (ID 47526: fbt:ip:ipcl_conn_destroy:entry): illegal operation in action #1
+dtrace: error on enabled probe ID 7 (ID 47526: fbt:ip:ipcl_conn_destroy:entry): illegal operation in action #1
+dtrace: error on enabled probe ID 8 (ID 47526: fbt:ip:ipcl_conn_destroy:entry): illegal operation in action #1
+  8  47527         ipcl_conn_destroy:return out of destroy....
+
+packet_write_wait: Connection to 192.168.174.5: Broken pipe
+Mohameds-Mac-Pro:~ khalfella$
+Mohameds-Mac-Pro:~ khalfella$ cd /Volumes/1\ TB\ HDD/
+Mohameds-Mac-Pro:1 TB HDD khalfella$ scp illumos@192.186.174.5:sol* .
+^CMohameds-Mac-Pro:1 TB HDD khalfella$ scp illumos@192.168.174.5:sol* .
+Password:
+sol-10-u10-ga2-sparc-dvd.iso                                                                               100% 1669MB  33.4MB/s   00:50
+sol-9-u8-ga-sparc-dvd.iso                                                                                  100% 2960MB  20.0MB/s   02:28
+sol-9-u8-ga-x86-dvd.iso                                                                                    100% 1986MB  20.7MB/s   01:36
+Mohameds-Mac-Pro:1 TB HDD khalfella$
+Mohameds-Mac-Pro:1 TB HDD khalfella$
+Mohameds-Mac-Pro:1 TB HDD khalfella$
+Mohameds-Mac-Pro:1 TB HDD khalfella$
+Mohameds-Mac-Pro:1 TB HDD khalfella$
+Mohameds-Mac-Pro:1 TB HDD khalfella$
+Mohameds-Mac-Pro:1 TB HDD khalfella$ ssh illumos@192.168.174.5
+Password:
+Last login: Tue Jul 12 03:25:41 2016 from 192.168.174.1
+The Illumos Project     SunOS 5.11      illumos-380fd67 April 2016
+You have new mail.
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$
+illumos@silver:/home/illumos$ Connection to 192.168.174.5 closed.
+Mohameds-Mac-Pro:1 TB HDD khalfella$ 0x40000000
+Mohameds-Mac-Pro:1 TB HDD khalfella$ 0x7ffffffe
+Mohameds-Mac-Pro:1 TB HDD khalfella$
+Mohameds-Mac-Pro:1 TB HDD khalfella$
+Mohameds-Mac-Pro:1 TB HDD khalfella$
+Mohameds-Mac-Pro:1 TB HDD khalfella$
+Mohameds-Mac-Pro:1 TB HDD khalfellMohameds-Mac-Pro:1 TB HDD khalfellMohameds-Mac-Pro
+:1 TB HDD khalfe
+Mohameds-Mac-P
+
+ro:1 TB HDD kh
+
+alfeMohameds-Mac
+
+-Pro:1 TB HD
+
+Mohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-Pro:1 TB HDD khalfeMohameds-Mac-ProMohameds-Mac-Pro:1 TB HMohamMohamMohameds-Mac-Pro:1 TMohameds-Mac-Pro:1 TMohamMohameds-MMohamMohamMohameds-Mac-Pro:1 TB HDD khalfella$
+
+r
+o
+:
+1
+
+T
+B
+
+H
+D
+D
+
+k
+h
+a
+l
+f
+e
+l
+l
+a
+$
+
+
