@@ -1,0 +1,7 @@
+stash repository README - Jul 12, 2016
+
+This is a repository I will try to maintain for all the scipts I frequently use.
+It will contain:
+	- Shell scripts to automate various tasks
+	- DTrace scripts to trance specific events
+	- Any other piece of work to be saved here
