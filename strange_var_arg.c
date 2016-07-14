@@ -3,13 +3,12 @@
 
 
 void
-func(char **str, char *fmt, ...)
+func(char *fmt, ...)
 {
 	va_list args;
 
 	va_start(args, fmt);
 
-	*str = "return result";
 	printf(fmt, args);
 
 	va_end(args);
@@ -18,7 +17,6 @@ func(char **str, char *fmt, ...)
 int
 main()
 {
-	char *ptr;
-	func(&ptr, "I am here (%s)\n", "khalfella");
+	func("I am here (%s)\n", "khalfella");
 	return (0);
 }
