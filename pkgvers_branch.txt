@@ -1,0 +1,1 @@
+PKGVERS_BRANCH=$(pkg info -r pkg://openindiana.org/SUNWcs | awk '$1 == "Branch:" {print $2}')
